@@ -1,3 +1,4 @@
+#include <BST.h>
 #include <catch.hpp>
 
 SCENARIO ("init", "[init]")
