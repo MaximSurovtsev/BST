@@ -21,7 +21,7 @@ set(CATCH_INCLUDE_DIR ${source_dir}/include CACHE INTERNAL "Path to include fold
 PROJECT(${GLOBAL_PROJECT_NAME})
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fdiagnostics-color=always")
-
+include_directories("include")
 add_subdirectory(sources)
 include_directories(${CATCH_INCLUDE_DIR})
 enable_testing(true)
