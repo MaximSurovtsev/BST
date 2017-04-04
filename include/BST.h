@@ -23,7 +23,7 @@ public:
 	delete root;
   }
 	
-  void insert(const T&)
+  void insert(const T& added)
   {
 	Node<T>* daughter = new Node<T>;
 	daughter->element = added;
