@@ -40,7 +40,7 @@ SCENARIO ("reading", "[init]")
 SCENARIO ("writing", "[init]")
 {
   BST<int> test;
-  test.insert(4);
+  
   test.writing("file1.txt");
   BST<int> test2;
   test.reading("file1.txt");
