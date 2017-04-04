@@ -11,17 +11,36 @@ template <class T> class BST
 {
 private:
 	Node<T>* root;
-	 int count;
+	unsigned int count;
 public:
 	BST()
   {
-	root = NULL;
+	root = nullptr;
 	count = 0;
 }
-	~BST()
-  {
-	delete root;
-  }
+~BST()
+{
+	deleteNode(root);
+}
+
+void deleteNode(Node<T>* temp)
+{
+	if (!temp)
+		return;
+	if (temp->pLeft)
+	{
+		deleteNode(temp->pLeft);
+		temp->pLeft = nullptr;
+	}
+
+	if (temp->pRight)
+	{
+		deleteNode(temp->pRight);
+		temp->pRight = nullptr;
+	}
+	delete temp;
+}
+		
 	
   void insert(const T& added)
   {
@@ -50,15 +69,18 @@ public:
 	count++;
 }
 	
-  void inorder_walk(Node<T>* temp)const
-  {
+ void display(Node<T>* temp, unsigned int level)const
+{
+	
 	if (temp)
 	{
-		inorder_walk(temp->pLeft);
-		std::cout << temp->element << "	";
-		inorder_walk(temp->pRight);
+		display(temp->pLeft, level + 1);
+		for (int i = 0; i < level; i++) 
+			std::cout << "__";
+		std::cout << temp->element << std::endl;
+		display(temp->pRight, level + 1);
 	}
-}
+ }
 	
 	int get_count()const
   {
@@ -81,7 +103,7 @@ public:
   {
 	return root;
 }
-	void reading(const std::string filename)
+	void reading(const std::string& filename)
   {
 	std::ifstream fin(filename);
 	T temp;
@@ -95,7 +117,7 @@ public:
 }
 	void output(std::ostream& ost, Node<T>* temp)
   {
-	if (temp == NULL)
+	if (temp == nullptr)
 	{
 		return;
 	}
@@ -106,9 +128,10 @@ public:
 		output(ost, temp->pRight);
 	}
 }
-	void writing(const std::string filename)
+	void writing(const std::string& filename)
   {
 	std::ofstream fout(filename);
+	fout << count;
 	output(fout, root);
 	fout.close();
 }
