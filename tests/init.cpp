@@ -43,6 +43,6 @@ SCENARIO ("writing", "[init]")
   
   test.writing("file1.txt");
   BST<int> test2;
-  test.reading("file1.txt");
+  test2.reading("file1.txt");
   REQUIRE(test.get_count() == test2.get_count());
 }
