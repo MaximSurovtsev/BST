@@ -32,9 +32,9 @@ SCENARIO("get root", "[init]")
 SCENARIO ("reading", "[init]")
 {
    BST<int> test;
-   test.reading("file.txt");
-   REQUIRE(test.search_result(1) == 1);
-   REQUIRE(test.get_count() == 1);
+   test.reading("file1.txt");
+   REQUIRE(test.search_result(1) == 0);
+   REQUIRE(test.get_count() == 0);
 }
 
 SCENARIO ("writing", "[init]")
