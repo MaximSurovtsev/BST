@@ -131,7 +131,7 @@ void deleteNode(Node<T>* temp)
 	void writing(const std::string& filename)
   {
 	std::ofstream fout(filename);
-	fout << count;
+	
 	output(fout, root);
 	fout.close();
 }
