@@ -42,8 +42,8 @@ void deleteNode(Node<T>* temp)
 }
 		
 	
-  void insert(const T& added)
-  {
+void insert(const T& added)
+{
 	Node<T>* daughter = new Node<T>;
 	daughter->element = added;
 	daughter->pLeft = daughter->pRight = 0;
@@ -69,7 +69,7 @@ void deleteNode(Node<T>* temp)
 	count++;
 }
 	
- void display(Node<T>* temp, unsigned int level)const
+void display(const Node<T>* temp, unsigned int level)const
 {
 	
 	if (temp)
@@ -82,29 +82,29 @@ void deleteNode(Node<T>* temp)
 	}
  }
 	
-	int get_count()const
-  {
+int get_count()const
+{
 	return count;
 }
-	Node<T>* get_pointer(const T& value, Node<T>* temp)const
-  {
+Node<T>* get_pointer(const T& value, Node<T>* temp)const
+ {
 	if (temp == 0 || value == temp->element)
 		return temp;
 	if (value > temp->element)
 		return get_pointer(value, temp->pRight);
 	else return get_pointer(value, temp->pLeft);
 }
-	bool search_result(const T& value)const
-  {
+bool search_result(const T& value)const
+{
 	return get_pointer(value, root);
 }
 
-	Node<T>* root_()const
-  {
+Node<T>* root_()const
+{
 	return root;
 }
-	void reading(const std::string& filename)
-  {
+void reading(const std::string& filename)
+{
 	std::ifstream fin(filename);
 	T temp;
 	fin >> temp;
@@ -115,8 +115,8 @@ void deleteNode(Node<T>* temp)
 	}
 	fin.close();
 }
-	void output(std::ostream& ost, Node<T>* temp)
-  {
+void output(std::ostream& ost,const Node<T>* temp)const
+{
 	if (temp == nullptr)
 	{
 		return;
@@ -128,8 +128,8 @@ void deleteNode(Node<T>* temp)
 		output(ost, temp->pRight);
 	}
 }
-	void writing(const std::string& filename)
-  {
+void writing(const std::string& filename)const
+{
 	std::ofstream fout(filename);
 	
 	output(fout, root);
