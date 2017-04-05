@@ -44,31 +44,35 @@ void deleteNode(Node<T>* temp)
 	
 void insert(const T& added)
 {
-	Node<T>* daughter = new Node<T>;
-	daughter->element = added;
-	daughter->pLeft = daughter->pRight = 0;
-	Node<T>* parent = root;
-	Node<T>* temp = root;
-	while (temp)                    
-	{
-		parent = temp;                 
-		if (added < temp->element)  
-			temp = temp->pLeft;
-		else
-			temp = temp->pRight;   
-	}
-	if (!parent)
-		root = daughter;
+	if (search_result(added) == 1)
+		return;
 	else
 	{
-		if (added < parent->element)
-			parent->pLeft = daughter;
+		Node<T>* daughter = new Node<T>;
+		daughter->element = added;
+		daughter->pLeft = daughter->pRight = 0;
+		Node<T>* parent = root;
+		Node<T>* temp = root;
+		while (temp)                    
+		{
+			parent = temp;                 
+			if (added < temp->element)  
+				temp = temp->pLeft;
+			else
+				temp = temp->pRight;   
+		}
+		if (!parent)
+			root = daughter;
 		else
-			parent->pRight = daughter;
+		{
+			if (added < parent->element)
+				parent->pLeft = daughter;
+			else
+				parent->pRight = daughter;
+		}
+		count++;
 	}
-	count++;
-}
-	
+}	
 void display(const Node<T>* temp, unsigned int level)const
 {
 	
