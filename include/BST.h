@@ -111,6 +111,7 @@ void reading(const std::string& filename)
 {
 	std::ifstream fin(filename);
 	T temp;
+	fin >> count;
 	fin >> temp;
 	while (fin)
 	{	
@@ -118,6 +119,7 @@ void reading(const std::string& filename)
 		fin >> temp;
 	}
 	fin.close();
+	count /=2;
 }
 void output(std::ostream& ost,const Node<T>* temp)const
 {
@@ -135,7 +137,7 @@ void output(std::ostream& ost,const Node<T>* temp)const
 void writing(const std::string& filename)const
 {
 	std::ofstream fout(filename);
-	
+	fout << count;
 	output(fout, root);
 	fout.close();
 }
