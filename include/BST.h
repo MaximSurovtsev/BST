@@ -167,24 +167,26 @@ Node<T>* remove(Node<T>* delNode)
 	}
 	else
 	{
+		
 		if (delNode->pLeft)
-		{
+		{	
 			delNode->pLeft->pParent = delNode->pParent;
+			delNode->pParent->pLeft = delNode->pLeft;
 			delete delNode;
 		}
 		else if (delNode->pRight)
 		{
-		delNode->pLeft->pParent = delNode->pParent;
-		delete delNode;
-
+			delNode->pLeft->pParent = delNode->pParent;
+			delete delNode;
 		}
+		return delNode;
 			
 	}
-	try
-	{
-		if (count == 1)
-			throw 12;
-		if (!delNode->pLeft && !delNode->pRight && delNode)
+	//try
+	//{
+	//	if (count == 1)
+	//		throw 12;
+		if (!delNode->pLeft && !delNode->pRight)
 		{
 			if (delNode->pParent->pLeft == delNode)
 			{
@@ -200,11 +202,11 @@ Node<T>* remove(Node<T>* delNode)
 		
 		--count;
 		return delNode;
-	}
-	catch (int i)
-	{
-		std::cout << "Error " << i << "There is only one node in the tree!";
-	}
+	//}
+	//catch (int i)
+	//{
+	//	std::cout << "Error " << i << "There is only one node in the tree!";
+	//}
 
 		
 	
