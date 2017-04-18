@@ -46,3 +46,11 @@ SCENARIO ("writing", "[init]")
   test2.reading("file1.txt");
   REQUIRE(test.get_count() == test2.get_count());
 }
+
+SCENARIO("deleting Node", "[init]")
+{
+  BST<int> test;
+  test.insert(20);
+  test.remove(test.get_pointer(20, test.root_()));
+  REQUIRE(test.root_ == nullptr);
+}
