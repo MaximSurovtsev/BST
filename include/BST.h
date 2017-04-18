@@ -113,20 +113,27 @@ Node<T>* root_()const
 }
 	
 void reading(const std::string& filename)
-{
-	std::ifstream fin(filename);
-	T temp;
-	fin >> count;
-	fin >> temp;
-	while (fin)
+{	
+	try
 	{	
-		insert(temp);
+		std::ifstream fin(filename);
+		if (!fin)
+			throw 1;
+		T temp;
+		fin >> count;
 		fin >> temp;
+		while (count)
+		{	
+			insert(temp);
+			fin >> temp;
+		}
+		fin.close();
 	}
-	fin.close();
-	count /=2;
+	catch (int i)
+	{
+		std::cout << "File doesn't exist!" << "\n";
+	}
 }
-	
 void output(std::ostream& ost,const Node<T>* temp)const
 {
 	if (temp == nullptr)
