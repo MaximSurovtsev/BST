@@ -184,6 +184,7 @@ Node<T>* remove(Node<T>* delNode)
 		else if (delNode->pRight)
 		{
 			delNode->pLeft->pParent = delNode->pParent;
+			delNode->pParent->pRight = delNode->pRight;
 			delete delNode;
 		}
 		return delNode;
