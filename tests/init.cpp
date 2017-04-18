@@ -51,6 +51,7 @@ SCENARIO("deleting Node", "[init]")
 {
   BST<int> test;
   test.insert(20);
-  test.remove(test.get_pointer(20, test.root_()));
-  REQUIRE(test.root_() == 0);
+  test.insert(28);
+  test.remove(test.get_pointer(28, test.root_()));
+  REQUIRE(test.get_count() == 1);
 }
