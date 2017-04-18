@@ -5,6 +5,7 @@ template <class T> struct Node
 	T element;
 	Node* pLeft;
 	Node* pRight;
+	Node* pParent;
 };
 
 template <class T> class BST
@@ -69,6 +70,7 @@ void insert(const T& added)
 				parent->pLeft = daughter;
 			else
 				parent->pRight = daughter;
+			daughter->pParent = parent;
 		}
 		count++;
 	}
@@ -90,6 +92,7 @@ int get_count()const
 {
 	return count;
 }
+	
 Node<T>* get_pointer(const T& value, Node<T>* temp)const
  {
 	if (temp == 0 || value == temp->element)
@@ -98,6 +101,7 @@ Node<T>* get_pointer(const T& value, Node<T>* temp)const
 		return get_pointer(value, temp->pRight);
 	else return get_pointer(value, temp->pLeft);
 }
+
 bool search_result(const T& value)const
 {
 	return get_pointer(value, root);
@@ -107,6 +111,7 @@ Node<T>* root_()const
 {
 	return root;
 }
+	
 void reading(const std::string& filename)
 {
 	std::ifstream fin(filename);
@@ -121,6 +126,7 @@ void reading(const std::string& filename)
 	fin.close();
 	count /=2;
 }
+	
 void output(std::ostream& ost,const Node<T>* temp)const
 {
 	if (temp == nullptr)
@@ -134,6 +140,7 @@ void output(std::ostream& ost,const Node<T>* temp)const
 		output(ost, temp->pRight);
 	}
 }
+	
 void writing(const std::string& filename)const
 {
 	std::ofstream fout(filename);
@@ -141,6 +148,49 @@ void writing(const std::string& filename)const
 	output(fout, root);
 	fout.close();
 }
+
+Node<T>* minValue(Node<T>* cur)
+{
+	if (cur->pLeft == nullptr)
+		return cur;
+	else
+		return minValue(cur->pLeft);
+}
+	
+Node<T>* remove(Node<T>* delNode)
+{
+		if (delNode->pLeft && delNode->pRight)
+		{
+			delNode->element = minValue(delNode->pRight)->element;
+			delNode = minValue(delNode->pRight);
+		}
+		else
+		{
+			if (delNode->pLeft)
+			{
+				delNode->pLeft->pParent = delNode->pParent;
+			}
+			else if (delNode->pRight)
+			{
+				delNode->pLeft->pParent = delNode->pParent;
+			}
+			delete delNode;
+		}
+		if (!delNode->pLeft && !delNode->pRight)
+		{
+			if (delNode->pParent->pLeft == delNode)
+			{
+				delNode->pParent->pLeft = nullptr;
+			}
+			if (delNode->pParent->pRight == delNode)
+			{
+				delNode->pParent->pRight = nullptr;
+			}
+			delete delNode;
+		}
+	return delNode;
+}
 };
+
 
 
