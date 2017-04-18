@@ -188,6 +188,7 @@ Node<T>* remove(Node<T>* delNode)
 			}
 			delete delNode;
 		}
+	--count;
 	return delNode;
 }
 };
