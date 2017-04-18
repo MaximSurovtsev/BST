@@ -159,37 +159,55 @@ Node<T>* minValue(Node<T>* cur)
 	
 Node<T>* remove(Node<T>* delNode)
 {
-		if (delNode->pLeft && delNode->pRight)
-		{
+		
+	if (delNode->pLeft && delNode->pRight)
+	{
 			delNode->element = minValue(delNode->pRight)->element;
 			delNode = minValue(delNode->pRight);
-		}
-		else
+	}
+	else
+	{
+		if (delNode->pLeft)
 		{
-			if (delNode->pLeft)
-			{
-				delNode->pLeft->pParent = delNode->pParent;
-			}
-			else if (delNode->pRight)
-			{
-				delNode->pLeft->pParent = delNode->pParent;
-			}
+			delNode->pLeft->pParent = delNode->pParent;
 			delete delNode;
 		}
-		if (!delNode->pLeft && !delNode->pRight)
+		else if (delNode->pRight)
+		{
+		delNode->pLeft->pParent = delNode->pParent;
+		delete delNode;
+
+		}
+			
+	}
+	try
+	{
+		if (count == 1)
+			throw 12;
+		if (!delNode->pLeft && !delNode->pRight && delNode)
 		{
 			if (delNode->pParent->pLeft == delNode)
 			{
 				delNode->pParent->pLeft = nullptr;
+				delete delNode;
 			}
 			if (delNode->pParent->pRight == delNode)
 			{
-				delNode->pParent->pRight = nullptr;
-			}
+			delNode->pParent->pRight = nullptr;
 			delete delNode;
+			}
 		}
-	--count;
-	return delNode;
+		
+		--count;
+		return delNode;
+	}
+	catch (int i)
+	{
+		std::cout << "Error " << i << "There is only one node in the tree!";
+	}
+
+		
+	
 }
 };
 
