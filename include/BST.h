@@ -283,10 +283,10 @@ void str(std::string& first,  Node<T>* temp)
  		return;
 	}
  	else
-	{	
+	{	str(first, temp->pLeft);
 		T tempo = temp->element;
 		first += tempo + "	";
-		str(first, temp->pLeft);
+		
 		str(first, temp->pRight);
 	}
 	
