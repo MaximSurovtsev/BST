@@ -260,6 +260,7 @@ void remove(const T value)
 		if (delNode->pLeft)
 		{
 			root = delNode->pLeft;
+			delNode->pLeft = nullptr;
 			delete delNode;
 			--count;
 			return;
@@ -267,6 +268,7 @@ void remove(const T value)
 		if (delNode->pRight)
 		{
 			root = delNode->pRight;
+			delNode->pRight = nullptr;
 			delete delNode;
 			--count;
 			return;
