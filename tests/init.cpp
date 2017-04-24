@@ -68,7 +68,7 @@ SCENARIO("BST delete root with one child", "[init]") {
 	BST<int> tree2={4, 3};
 	tree.remove(8);
 	//REQUIRE(tree == tree2);
-	REQUIRE(tree.get_count == 2);
+	REQUIRE(tree.get_count() == 2);
 }
 
 
