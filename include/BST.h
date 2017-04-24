@@ -290,7 +290,7 @@ void remove(const T value)
 	}
 }
 
-void str(std::string& first,  Node<T>* temp)const
+void str(std::string first,  Node<T>* temp)const
 {
 	if (temp == NULL)
 	{
