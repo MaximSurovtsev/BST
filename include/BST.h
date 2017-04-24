@@ -265,6 +265,18 @@ Node<T>* remove(T value)
 			delete delNode;
 			return delNode;
 		}
+		if (delNode->pLeft)
+		{
+			root = delNode->pLeft;
+			delete delNode;
+			return delNode;
+		}
+		if (delNode->pRight)
+		{
+			root = delNode->pRight;
+			delete delNode;
+			return delNode;
+		}
 		if (!delNode->pParent && !delNode->pLeft && !delNode->pRight)
 		{
 			root = nullptr;
