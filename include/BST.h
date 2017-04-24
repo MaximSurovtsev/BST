@@ -285,7 +285,7 @@ bool operator ==(const BST<T>& tree)
 {
 	std::string first, second;
 	tree.str(first, tree.root_());
-	str(second, tree.root_());
+	str(second, root);
 	return first == second;
 }
 };
