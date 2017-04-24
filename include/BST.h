@@ -290,19 +290,19 @@ void remove(const T value)
 	}
 }
 
-void str(std::string first,  Node<T>* temp)const
+void str(std::string& first,  Node<T>* temp)const
 {
-	if (temp == NULL)
+	if (temp == nullptr)
 	{
 		return;
 	}
-	else
+	if (temp->pLeft||temp->pRight)
 	{
 		str(first, temp->pLeft);
 		first += std::to_string(temp->element);
 		str(first, temp->pRight);
-		
 	}
+	else return;
 
 }	
 bool operator ==(const BST<T>& tree)const
