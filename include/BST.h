@@ -292,7 +292,7 @@ void str(std::string& first,  Node<T>* temp)const
 	}
 
 }	
-bool operator ==(const BST<T> tree)const
+bool operator ==(const BST<T>& tree)const
 {
 	std::string first, second;
 	/*T a,b;
