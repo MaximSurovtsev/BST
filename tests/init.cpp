@@ -65,8 +65,8 @@ SCENARIO("deleting Node", "[init]")
 // 						 				    08
 // 						 				   ---->
 SCENARIO("BST delete root without children", "[init]") {
-	BST<int> tree ({8});
-	REQUIRE( tree.remove(8) );
+	BST<int> tree = {8};
+	tree.remove(8);
 	REQUIRE( tree.root_() == nullptr  );
 }
 
