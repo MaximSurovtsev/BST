@@ -276,27 +276,33 @@ Node<T>* remove(T value)
 		std::cout << "There isnt element \"" << value <<"\" in the tree!\nError#6\n";
 	}
 }
-void str(std::string& first,  Node<T>* temp)
-{
- 	if (temp == NULL)
- 	{
- 		return;
-	}
- 	else
-	{	str(first, temp->pLeft);
-		T tempo = temp->element;
-		first += tempo + "	";
-		
-		str(first, temp->pRight);
-	}
-	
-}
+
 	
 bool operator ==(const BST<T> tree)const
 {
 	std::string first, second;
- 	tree.str(first, tree.root_());
- 	str(second, root);
+	T a,b;
+	writing("file.txt");
+	std::ifstream fin("file.txt");
+	fin >> b;
+	for (int i = 0; i < b; i++)
+	{
+		fin >> a;
+		first += std::to_string(a)+" "; 
+	}
+	fin.close();
+	
+	std::ifstream fin1("file.txt");
+	tree.writing("file.txt");
+	fin1 >> b;
+	for (int i = 0; i < b; i++)
+	{
+		
+		fin1 >> a;
+		second += std::to_string(a)+" "; 
+	}
+	fin1.close();
+	
 	return first == second;
 }
 };
