@@ -86,7 +86,7 @@ SCENARIO("BST delete root without children", "[init]") {
 SCENARIO("BST delete root with one child", "[init]") {
 	BST<int> tree ({8, 4, 3});
 	BST<int> tree2({4, 3});
-	REQUIRE( tree.remove(8) );
+	tree.remove(8);
 	REQUIRE( tree == tree2 );
 }
 
@@ -115,7 +115,7 @@ SCENARIO("BST delete root with one child", "[init]") {
 //                          +----+                                              +----+
 SCENARIO("BST delete root with children", "[init]") {
 	BST<int> tree ({8, 4, 3, 10, 9, 13, 11, 12});
-	REQUIRE( tree.remove(8) );
+	tree.remove(8);
 	REQUIRE( tree == BST<int>({9, 4, 3, 10, 13, 11, 12}) );
 }
 
@@ -144,7 +144,7 @@ SCENARIO("BST delete root with children", "[init]") {
 //                          +----+                                              +----+
 SCENARIO("BST delete non root without children", "[init]") {
 	BST<int> tree({8, 4, 3, 10, 9, 13, 11, 12});
-	REQUIRE( tree.remove(3) );
+	tree.remove(3);
 	REQUIRE( tree == BST<int>({8, 4, 10, 9, 13, 11, 12}) );
 }
 
@@ -173,7 +173,7 @@ SCENARIO("BST delete non root without children", "[init]") {
 //                          +----+
 SCENARIO("BST delete non root with one child", "[init]") {
 	BST<int> tree ({8, 4, 3, 10, 9, 13, 11, 12});
-	REQUIRE( tree.remove(11) );
+	tree.remove(11);
 	REQUIRE( tree == BST<int>({8, 4, 3, 10, 9, 13, 12}) );
 }
 
@@ -202,6 +202,6 @@ SCENARIO("BST delete non root with one child", "[init]") {
 //                          +----+
 SCENARIO("BST delete non root with children", "[init]") {
 	BST<int> tree ({8, 4, 3, 10, 9, 13, 11, 12});
-	REQUIRE( tree.remove(10) );
+	tree.remove(10);
 	REQUIRE( tree == BST<int>({8, 4, 3, 11, 9, 13, 12}) );
 }
