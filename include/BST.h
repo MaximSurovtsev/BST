@@ -196,7 +196,7 @@ Node<T>* minValue(Node<T>* cur)
 		return minValue(cur->pLeft);
 }
 	
-Node<T>* remove(T value)
+Node<T>* remove(const T value)
 {
 	try
 	{
