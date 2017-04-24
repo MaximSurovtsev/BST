@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <iniatializer_list>
 template <class T> struct Node
 {
 	T element;
