@@ -90,8 +90,9 @@ SCENARIO("BST delete root without children", "[delete]") {
 //      +----+
 SCENARIO("BST delete root with one child", "[delete]") {
 	BST<int> tree ({8, 4, 3});
+	BST<int> tree2({4, 3});
 	REQUIRE( tree.remove(8) );
-	REQUIRE( tree == BST<int>({4, 3}) );
+	REQUIRE( tree == tree2 );
 }
 
 //                +----+                                              +----+
