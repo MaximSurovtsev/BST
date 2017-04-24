@@ -62,7 +62,7 @@ SCENARIO("BST delete root without children", "[init]") {
 	tree.remove(8);
 	REQUIRE( tree.root_() == nullptr  );
 }
-/*
+
 SCENARIO("BST delete root with one child", "[init]") {
 	BST<int> tree ={8, 4, 3};
 	BST<int> tree2={4, 3};
@@ -70,7 +70,7 @@ SCENARIO("BST delete root with one child", "[init]") {
 	//REQUIRE(tree == tree2);
 	REQUIRE(tree.get_count() == 2);
 }
-*/
+
 
 SCENARIO("BST delete root with children", "[init]") {
 	BST<int> tree1 ={8, 4, 3, 10, 9, 13, 11, 12};
