@@ -219,18 +219,21 @@ Node<T>* remove(const T value)
 			{
 				root = nullptr;
 				delete delNode;
+				--count;
 				return delNode;
 			}
 			if (delNode->pParent->pLeft == delNode)
 			{
 				delNode->pParent->pLeft = nullptr;
 				delete delNode;
+				--count;
 				return delNode;
 			}
 			if (delNode->pParent->pRight == delNode)
 			{
 				delNode->pParent->pRight = nullptr;
 				delete delNode;
+				--count;
 				return delNode;
 			}
 		}
@@ -239,6 +242,7 @@ Node<T>* remove(const T value)
 			delNode->pParent->pLeft = delNode->pLeft;
 			delNode->pLeft->pParent = delNode->pParent;
 			delete delNode;
+			--count;
 			return delNode;
 		}
 		if (delNode->pParent&&delNode->pRight)
@@ -250,27 +254,31 @@ Node<T>* remove(const T value)
 			else delNode->pParent->pRight = delNode->pRight;
 			delNode->pRight->pParent = delNode->pParent;
 			delete delNode;
+			--count;
 			return delNode;
 		}
 		if (delNode->pLeft)
 		{
 			root = delNode->pLeft;
 			delete delNode;
+			--count;
 			return delNode;
 		}
 		if (delNode->pRight)
 		{
 			root = delNode->pRight;
 			delete delNode;
+			--count;
 			return delNode;
 		}
 		if (!delNode->pParent && !delNode->pLeft && !delNode->pRight)
 		{
 			root = nullptr;
 			delete delNode;
+			--count;
+			return delNode;
 		}
-		--count;
-		return delNode;
+		
 	}
 
 	catch (int i)
