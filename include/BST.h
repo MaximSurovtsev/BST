@@ -179,21 +179,6 @@ void output(std::ostream& ost,const Node<T>* temp)const
 	}
 }
 
-void str(std::string& first,  Node<T>* temp)
-{
-	if (temp == NULL)
-	{
-		return;
-	}
-	else
-	{	
-		T tempo = temp->element;
-		first += tempo + "	";
-		str(first, temp->pLeft);
-		str(first, temp->pRight);
-	}
-	
-}
 	
 void writing(const std::string& filename)const
 {
@@ -293,11 +278,31 @@ Node<T>* remove(T value)
 }
 
 	
-bool operator ==( BST<T> tree)
+bool operator ==( BST<T>& tree)
 {
 	std::string first, second;
-	tree.str(first, tree.root_());
-	str(second, root);
+	T a,b;
+	writing("file.txt");
+	std::ifstream fin("file.txt");
+	fin >> b;
+	for (int i = 0; i < b; i++)
+	{
+		fin >> a;
+		first += std::to_string(a)+" "; 
+	}
+	fin.close();
+	
+	std::ifstream fin1("file.txt");
+	tree.writing("file.txt");
+	fin1 >> b;
+	for (int i = 0; i < b; i++)
+	{
+		
+		fin1 >> a;
+		second += std::to_string(a)+" "; 
+	}
+	fin1.close();
+	
 	return first == second;
 }
 };
