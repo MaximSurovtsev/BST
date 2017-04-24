@@ -57,9 +57,9 @@ SCENARIO("deleting Node", "[init]")
 }
 
 SCENARIO("BST delete non inserted element", "[delete]") {
-	BST<int> tree ({8});
-	//REQUIRE( !tree.remove(4) );
-	REQUIRE( tree.get_count() == 1 );
+	BST<int> tree1 ({8});
+	REQUIRE( !tree.remove(4) );
+	//REQUIRE( tree.get_count() == 1 );
 }
 
 // 				  +----+
