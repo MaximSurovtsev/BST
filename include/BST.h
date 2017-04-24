@@ -293,7 +293,7 @@ Node<T>* remove(T value)
 }
 
 	
-bool operator ==(const BST<T>& tree)const
+bool operator ==( BST<T> tree)
 {
 	std::string first, second;
 	tree.str(first, tree.root_());
