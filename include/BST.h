@@ -281,11 +281,11 @@ Node<T>* remove(T value)
 }
 
 	
-friend bool operator ==(const BST<T>& tree, const BST<T>& tree2)
+bool operator ==(const BST<T>& tree)
 {
 	std::string first, second;
 	tree.str(first, tree.root_());
-	tree2.str(second, tree2.root_());
+	str(second, tree2.root_());
 	return first == second;
 }
 };
