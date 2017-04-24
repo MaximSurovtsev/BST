@@ -290,51 +290,33 @@ void remove(const T value)
 	}
 }
 
-void str(std::string& first,  Node<T>* temp)const
+bool compare(const Node<T>* temp1, const Node<T>* temp2)const
 {
-	if (temp == nullptr)
+	bool x = true; 
+	x = temp1->element == temp2->element;
+	if (x)
 	{
-		return;
-	}
-	if (temp->pLeft||temp->pRight)
-	{
-		str(first, temp->pLeft);
-		first += std::to_string(temp->element);
-		str(first, temp->pRight);
-	}
-	else return;
 
-}	
-bool operator ==(const BST<T>& tree)const
-{
-	std::string first, second;
-	/*T a,b;
-	writing("file.txt");
-	std::ifstream fin("file.txt");
-	fin >> b;
-	for (int i = 0; i < b; i++)
-	{
-		fin >> a;
-		first += std::to_string(a)+" "; 
+		if (temp1->pLeft&&temp2->pLeft)
+			return compare(temp1->pLeft, temp2->pLeft);
+		if (!temp1->pLeft&&temp2->pLeft)
+			return false;
+		if (temp1->pLeft&&!temp2->pLeft)
+			return false;
+		if (temp1->pRight&&temp2->pRight)
+			return compare(temp1->pRight, temp2->pRight);
+		if (!temp1->pRight&&temp2->pRight)
+			return false;
+		if (temp1->pRight&&!temp2->pRight)
+			return false;
+		return true;
 	}
-	fin.close();
-	
-	std::ifstream fin1("file.txt");
-	tree.writing("file.txt");
-	fin1 >> b;
-	for (int i = 0; i < b; i++)
-	{
-		
-		fin1 >> a;
-		second += std::to_string(a)+" "; 
-	}
-	fin1.close();
-	*/
-	str(first, root);
-	tree.str(second, tree.root_());
-	return first == second;
+	else return false;
 }
-
+bool operator == (const BST<T>& tree)const
+{
+	return (compare(root, tree.root_()));
+}
 };
 
 
