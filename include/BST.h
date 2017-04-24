@@ -294,10 +294,7 @@ void str(std::string& first,  Node<T>* temp)const
 	}
 
 }	
-friend bool operator ==(const BST<T>& tree1, const BST<T>& tree2);
-
-};
-template<typename T> bool operator ==(const BST<T>& tree1, const BST<T>& tree2)
+bool& operator ==(const BST<T>& tree)const
 {
 	std::string first, second;
 	/*T a,b;
@@ -322,9 +319,11 @@ template<typename T> bool operator ==(const BST<T>& tree1, const BST<T>& tree2)
 	}
 	fin1.close();
 	*/
-	tree1.str(first, tree1.root_());
-	tree2.str(second, tree2.root_());
+	str(first, root);
+	tree.str(second, tree.root_());
 	return first == second;
 }
+
+};
 
 
