@@ -207,5 +207,5 @@ SCENARIO("BST delete non root with one child", "[delete]") {
 SCENARIO("BST delete non root with children", "[delete]") {
 	BST<int> tree ({8, 4, 3, 10, 9, 13, 11, 12});
 	REQUIRE( tree.remove(10) );
-	REQUIRE( tree == BinarySearchTree<int>({8, 4, 3, 11, 9, 13, 12}) );
+	REQUIRE( tree == BST<int>({8, 4, 3, 11, 9, 13, 12}) );
 }
