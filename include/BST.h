@@ -14,11 +14,21 @@ private:
 	Node<T>* root;
 	unsigned int count;
 public:
-	BST()
-  {
+
+BST()
+{
 	root = nullptr;
 	count = 0;
 }
+
+BST(std::initializer_list<T> elements)
+{
+	for (int i = 0; i < elements.size();i++)
+	{
+		insert(*(elements.begin()+i));
+	}
+}
+
 ~BST()
 {
 	deleteNode(root);
@@ -45,48 +55,69 @@ void deleteNode(Node<T>* temp)
 	
 void insert(const T& added)
 {
-	if (search_result(added) == 1)
-		return;
-	else
+	try
 	{
+		if (search_result(added))
+			throw 5;
 		Node<T>* daughter = new Node<T>;
 		daughter->element = added;
-		daughter->pLeft = daughter->pRight = 0;
+		daughter->pLeft = daughter->pRight = daughter->pParent = nullptr;
 		Node<T>* parent = root;
 		Node<T>* temp = root;
-		while (temp)                    
+		while (temp)
 		{
-			parent = temp;                 
-			if (added < temp->element)  
+			parent = temp;
+			if (added < temp->element)
 				temp = temp->pLeft;
 			else
-				temp = temp->pRight;   
+				temp = temp->pRight;
 		}
 		if (!parent)
 			root = daughter;
 		else
 		{
 			if (added < parent->element)
+			{
 				parent->pLeft = daughter;
+
+			}
 			else
+			{
 				parent->pRight = daughter;
+
+			}
 			daughter->pParent = parent;
 		}
 		count++;
 	}
-}	
+	catch (int i)
+	{
+		std::cout << "This number \"" << added << "\" has already added in the tree!\nError #5\n";
+	}
+}
+	
 void display(const Node<T>* temp, unsigned int level)const
 {
-	
-	if (temp)
-	{
-		display(temp->pLeft, level + 1);
-		for (int i = 0; i < level; i++) 
-			std::cout << "__";
-		std::cout << temp->element << std::endl;
-		display(temp->pRight, level + 1);
+	try
+	{	
+		if (!root)
+		{
+			throw 2;
+		}	
+		if (temp)
+		{
+			display(temp->pLeft, level + 1);
+			for (int i = 0; i < level; i++)
+				std::cout << "__";
+			std::cout << temp->element << "\n";
+			display(temp->pRight, level + 1);
+		}
 	}
- }
+	catch (int i)
+	{
+		std::cout << "There is nothing to print\nError #2\n";
+	}
+}
 	
 int get_count()const
 {
@@ -115,23 +146,23 @@ Node<T>* root_()const
 void reading(const std::string& filename)
 {	
 	try
-	{	
+	{
 		std::ifstream fin(filename);
 		if (!fin)
 			throw 1;
 		T temp;
 		fin >> count;
-		fin >> temp;
-		while (count)
-		{	
-			insert(temp);
+		for (int i = 0; i < count; ++i)
+		{
 			fin >> temp;
+			insert(temp);
+			count--;
 		}
 		fin.close();
-	}
+		}
 	catch (int i)
 	{
-		std::cout << "File doesn't exist!" << "\n";
+		std::cout << "File doesn't exist!\nError #1\n";
 	}
 }
 void output(std::ostream& ost,const Node<T>* temp)const
@@ -146,6 +177,22 @@ void output(std::ostream& ost,const Node<T>* temp)const
 		output(ost, temp->pLeft);
 		output(ost, temp->pRight);
 	}
+}
+
+void str(std::string& first,  Node<T>* temp)
+{
+	if (temp == NULL)
+	{
+		return;
+	}
+	else
+	{	
+		T tempo = temp->element;
+		first += tempo + "	";
+		str(first, temp->pLeft);
+		str(first, temp->pRight);
+	}
+	
 }
 	
 void writing(const std::string& filename)const
@@ -166,58 +213,80 @@ Node<T>* minValue(Node<T>* cur)
 	
 Node<T>* remove(Node<T>* delNode)
 {
-		
-	if (delNode->pLeft && delNode->pRight)
+	try
 	{
+		Node<T>* delNode = get_pointer(value, root);
+		if (!search_result(value))
+			throw 6;
+
+		if (delNode->pLeft && delNode->pRight)
+		{
 			delNode->element = minValue(delNode->pRight)->element;
 			delNode = minValue(delNode->pRight);
-	}
-	else
-	{
-		
-		if (delNode->pLeft)
-		{	
-			delNode->pLeft->pParent = delNode->pParent;
-			delNode->pParent->pLeft = delNode->pLeft;
-			delete delNode;
 		}
-		else if (delNode->pRight)
-		{
-			delNode->pLeft->pParent = delNode->pParent;
-			delNode->pParent->pRight = delNode->pRight;
-			delete delNode;
-		}
-		return delNode;
-			
-	}
-	//try
-	//{
-	//	if (count == 1)
-	//		throw 12;
+
+
 		if (!delNode->pLeft && !delNode->pRight)
 		{
+			if (delNode->pParent == nullptr)
+			{
+				root = nullptr;
+				delete delNode;
+				return delNode;
+			}
 			if (delNode->pParent->pLeft == delNode)
 			{
 				delNode->pParent->pLeft = nullptr;
 				delete delNode;
+				return delNode;
 			}
 			if (delNode->pParent->pRight == delNode)
 			{
-			delNode->pParent->pRight = nullptr;
-			delete delNode;
+				delNode->pParent->pRight = nullptr;
+				delete delNode;
+				return delNode;
 			}
 		}
-		
+		if (delNode->pParent&&delNode->pLeft)
+		{
+			delNode->pParent->pLeft = delNode->pLeft;
+			delNode->pLeft->pParent = delNode->pParent;
+			delete delNode;
+			return delNode;
+		}
+		if (delNode->pParent&&delNode->pRight)
+		{
+			if (delNode == delNode->pParent->pLeft)
+			{
+				delNode->pParent->pLeft = delNode->pRight;
+			}
+			else delNode->pParent->pRight = delNode->pRight;
+			delNode->pRight->pParent = delNode->pParent;
+			delete delNode;
+			return delNode;
+		}
+		if (!delNode->pParent && !delNode->pLeft && !delNode->pRight)
+		{
+			root = nullptr;
+			delete delNode;
+		}
 		--count;
 		return delNode;
-	//}
-	//catch (int i)
-	//{
-	//	std::cout << "Error " << i << "There is only one node in the tree!";
-	//}
+	}
 
-		
+	catch (int i)
+	{
+		std::cout << "There isnt element \"" << value <<"\" in the tree!\nError#6\n";
+	}
+}
+
 	
+friend bool operator ==( BST<T>& tree,  BST<T>& tree2)
+{
+	std::string first, second;
+	tree.str(first, tree.root_());
+	tree2.str(second, tree2.root_());
+	return first == second;
 }
 };
 
