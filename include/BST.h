@@ -23,6 +23,7 @@ BST()
 
 BST(std::initializer_list<T> elements)
 {
+	count = elements.size();
 	for (int i = 0; i < elements.size();i++)
 	{
 		insert(*(elements.begin()+i));
