@@ -288,7 +288,7 @@ void str(std::string& first,  Node<T>* temp)const
 		str(first, temp->pLeft);
 		first += std::to_string(temp->element);
 		str(first, temp->pRight);
-		std::cout << first << "\n";
+		
 	}
 
 }	
