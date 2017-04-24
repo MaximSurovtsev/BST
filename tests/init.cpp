@@ -53,7 +53,7 @@ SCENARIO("deleting Node", "[init]")
   test.insert(20);
   test.insert(28);
   test.remove(28);
-  REQUIRE(test.get_count() == 1);
+  REQUIRE(test.search_result(28) == 0);
 }
 
 SCENARIO("BST delete non inserted element", "[delete]") {
