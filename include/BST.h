@@ -227,7 +227,7 @@ void remove(const T value)
 				delNode->pParent->pLeft = nullptr;
 				delete delNode;
 				--count;
-				return delNode;
+				return;
 			}
 			if (delNode->pParent->pRight == delNode)
 			{
