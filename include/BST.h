@@ -198,7 +198,7 @@ Node<T>* minValue(Node<T>* cur)
 		return minValue(cur->pLeft);
 }
 	
-Node<T>* remove(const T value)
+void remove(const T value)
 {
 	try
 	{
@@ -220,7 +220,7 @@ Node<T>* remove(const T value)
 				root = nullptr;
 				delete delNode;
 				--count;
-				return delNode;
+				return;
 			}
 			if (delNode->pParent->pLeft == delNode)
 			{
@@ -234,7 +234,7 @@ Node<T>* remove(const T value)
 				delNode->pParent->pRight = nullptr;
 				delete delNode;
 				--count;
-				return delNode;
+				return;
 			}
 		}
 		if (delNode->pParent&&delNode->pLeft)
@@ -243,7 +243,7 @@ Node<T>* remove(const T value)
 			delNode->pLeft->pParent = delNode->pParent;
 			delete delNode;
 			--count;
-			return delNode;
+			return;
 		}
 		if (delNode->pParent&&delNode->pRight)
 		{
@@ -255,28 +255,28 @@ Node<T>* remove(const T value)
 			delNode->pRight->pParent = delNode->pParent;
 			delete delNode;
 			--count;
-			return delNode;
+			return;
 		}
 		if (delNode->pLeft)
 		{
 			root = delNode->pLeft;
 			delete delNode;
 			--count;
-			return delNode;
+			return;
 		}
 		if (delNode->pRight)
 		{
 			root = delNode->pRight;
 			delete delNode;
 			--count;
-			return delNode;
+			return;
 		}
 		if (!delNode->pParent && !delNode->pLeft && !delNode->pRight)
 		{
 			root = nullptr;
 			delete delNode;
 			--count;
-			return delNode;
+			return;
 		}
 		
 	}
