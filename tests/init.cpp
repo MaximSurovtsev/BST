@@ -84,8 +84,8 @@ SCENARIO("BST delete root without children", "[init]") {
 //      | 03 |                             ---->
 //      +----+
 SCENARIO("BST delete root with one child", "[init]") {
-	BST<int> tree ({8, 4, 3});
-	BST<int> tree2({4, 3});
+	BST<int> tree ={8, 4, 3};
+	BST<int> tree2={4, 3};
 	tree.remove(8);
 	bool t = tree == tree2;
 	REQUIRE(t == 1);
@@ -115,8 +115,8 @@ SCENARIO("BST delete root with one child", "[init]") {
 //                          | 12 |                                              | 12 |
 //                          +----+                                              +----+
 SCENARIO("BST delete root with children", "[init]") {
-	BST<int> tree1 ({8, 4, 3, 10, 9, 13, 11, 12});
-	BST<int> tree2 ({9, 4, 3, 10, 13, 11, 12});
+	BST<int> tree1 ={8, 4, 3, 10, 9, 13, 11, 12};
+	BST<int> tree2 ={9, 4, 3, 10, 13, 11, 12};
 	tree1.remove(8);
 	REQUIRE( tree1 == tree2 );
 }
@@ -145,8 +145,8 @@ SCENARIO("BST delete root with children", "[init]") {
 //                          | 12 |                                              | 12 |
 //                          +----+                                              +----+
 SCENARIO("BST delete non root without children", "[init]") {
-	BST<int> tree1({8, 4, 3, 10, 9, 13, 11, 12});
-	BST<int> tree2({8, 4, 10, 9, 13, 11, 12});
+	BST<int> tree1={8, 4, 3, 10, 9, 13, 11, 12};
+	BST<int> tree2={8, 4, 10, 9, 13, 11, 12};
 	tree1.remove(3);
 	REQUIRE( tree1 ==tree2 );
 }
@@ -175,8 +175,8 @@ SCENARIO("BST delete non root without children", "[init]") {
 //                          | 12 |
 //                          +----+
 SCENARIO("BST delete non root with one child", "[init]") {
-	BST<int> tree1 ({8, 4, 3, 10, 9, 13, 11, 12});
-	BST<int> tree2 ({8, 4, 3, 10, 9, 13, 12});
+	BST<int> tree1 ={8, 4, 3, 10, 9, 13, 11, 12};
+	BST<int> tree2 ={8, 4, 3, 10, 9, 13, 12};
 	tree1.remove(11);
 	REQUIRE( tree1 == tree2 );
 }
@@ -205,8 +205,8 @@ SCENARIO("BST delete non root with one child", "[init]") {
 //                          | 12 |
 //                          +----+
 SCENARIO("BST delete non root with children", "[init]") {
-	BST<int> tree1 ({8, 4, 3, 10, 9, 13, 11, 12});
-	BST<int> tree2 ({8, 4, 3, 11, 9, 13, 12});
+	BST<int> tree1 ={8, 4, 3, 10, 9, 13, 11, 12};
+	BST<int> tree2 ={8, 4, 3, 11, 9, 13, 12};
 	tree1.remove(10);
 	REQUIRE( tree1 == tree2 );
 }
