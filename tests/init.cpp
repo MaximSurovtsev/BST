@@ -23,6 +23,14 @@ SCENARIO("get_pointer", "[init]")
   REQUIRE(test.get_pointer(4, test.root_()) != 0);
 }
 
+SCENARIO("insert equal elements", "[insert]")
+ {
+   BST<int> tree;
+   tree.insert(4);
+   tree.insert(4);
+   REQUIRE(tree.get_count() == 1);
+ }
+
 SCENARIO("get root", "[init]")
 {
   BST<int> test;
