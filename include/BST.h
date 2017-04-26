@@ -23,7 +23,7 @@ BST()
 	count = 0;
 }
 
-BST(std::initializer_list<T> elements)
+BST(std::initializer_list<T> elements) : BST()
 {
 	
 	for (int i = 0; i < elements.size();i++)
